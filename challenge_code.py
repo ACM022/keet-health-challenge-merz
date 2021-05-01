@@ -1,13 +1,14 @@
 import psycopg2
 import pandas as pd
 from datetime import timedelta
+import os
 
 # Connect to the AWS RDS Postgres Database
 connection = psycopg2.connect(
-    host = 'keet-health-challenge.cx6uy7iy3oyf.us-east-2.rds.amazonaws.com',
+    host = 'keet-health-db.cx6uy7iy3oyf.us-east-2.rds.amazonaws.com',
     port = 5432,
-    user = 'keet_health',
-    password = 'keet_PW_3853',
+    user = os.getenv('KEET_CHALLENGE_USERNAME'),
+    password = os.getenv('KEET_CHALLENGE_PASSWORD'),
     database='user_data'
     )
 cursor=connection.cursor()
